@@ -12,6 +12,4 @@ export function verifyPassword(password: string, storedHash: string): boolean {
   return timingSafeEqual(Buffer.from(hashedAttempt.toString('hex')), Buffer.from(hash));
 }
 
-export function generateSessionToken(): string {
-  return randomBytes(32).toString('hex');
-}
+
