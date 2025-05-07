@@ -1,11 +1,13 @@
-export interface AuthRequest {
-    email: string;
-    password: string;
+import { FastifyRequest } from 'fastify';
+
+declare module 'fastify' {
+  interface FastifyRequest {
+    user?: { email: string };
+    sessionToken?: string;
   }
-  
-  export interface AuthResponse {
-    token?: string;
-    message?: string;
-    error?: string;
+}
+export interface AuthenticatedRequest extends FastifyRequest {
+    user: { email: string };
+    sessionToken: string;
   }
   

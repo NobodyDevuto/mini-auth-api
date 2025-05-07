@@ -1,1 +1,12 @@
-{} 
+{
+  "test@example.com": {
+    "email": "test@example.com",
+    "passwordHash": "6ce60ded9f786d998e50976c1091483c:a7ab18e72952357193de85bd7929d1f2a1b29e015a1547ffd5d4623055f40cf7472e8ace0bdb39c49d85c8c4da818a87beb202e18da994532bfb10e8be4f40be",
+    "sessions": {
+      "58d6e212e29fca4e2f3253a4074b7111ce636747f83e87647e2f26de81872a61": {
+        "createdAt": 1746578995448,
+        "lastSeen": 1746578995448
+      }
+    }
+  }
+}

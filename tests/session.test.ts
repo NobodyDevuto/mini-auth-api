@@ -1,20 +1,33 @@
 import { describe, it, expect } from 'vitest';
-import { generateSessionToken, isTokenExpired } from '../src/utils/token';
+import { createSession, validateSession, endSession } from '../src/services/sessionService';
 
-describe('Session Token Management', () => {
-  it('should generate a valid session token', () => {
-    const token = generateSessionToken();
-    expect(token).toBeDefined();
-    expect(token.length).toBeGreaterThan(10); // حداقل مقدار مناسب
+describe('Session Service', () => {
+  it('should create a session', async () => {
+    const email = 'test@example.com';
+    const token = 'randomToken123';
+
+    const created = await createSession(email, token);
+    expect(created).toBe(true);
   });
 
-  it('should correctly detect expired sessions', () => {
-    const createdAt = Date.now() - (8 * 24 * 60 * 60 * 1000); // ۸ روز پیش
-    expect(isTokenExpired(createdAt, 7)).toBe(true);
+  it('should validate an active session', async () => {
+    const email = 'test@example.com';
+    const token = 'randomToken123';
+
+    await createSession(email, token);
+    const isValid = await validateSession(email, token);
+    expect(isValid).toBe(true);
   });
 
-  it('should correctly validate active sessions', () => {
-    const createdAt = Date.now() - (5 * 24 * 60 * 60 * 1000); // ۵ روز پیش
-    expect(isTokenExpired(createdAt, 7)).toBe(false);
+  it('should end a session', async () => {
+    const email = 'test@example.com';
+    const token = 'randomToken123';
+
+    await createSession(email, token);
+    const ended = await endSession(email, token);
+    expect(ended).toBe(true);
+
+    const isValidAfterEnd = await validateSession(email, token);
+    expect(isValidAfterEnd).toBe(false);
   });
 });
