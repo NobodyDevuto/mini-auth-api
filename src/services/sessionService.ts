@@ -7,7 +7,7 @@ export async function createSession(email: string, token: string): Promise<boole
   user.addSession(token);
   await saveUsers({ [email]: user });
 
-  return user.sessions[token] ? true : false; // بررسی موفقیت ایجاد نشست
+  return user.sessions[token] ? true : false; 
 }
 
 export async function validateSession(email: string, token: string): Promise<boolean> {
