@@ -3,8 +3,8 @@ import { registerUser, loginUser, getUserProfile, logoutUser } from '../services
 import { validateSession } from '../middleware/auth.middleware';
 
 export async function authRoutes(fastify: FastifyInstance) {
-  fastify.post('/register', async (request: FastifyRequest, reply: FastifyReply) => registerUser(request, reply));
-  fastify.post('/login', async (request: FastifyRequest, reply: FastifyReply) => loginUser(request, reply));
-  fastify.get('/me', { preHandler: validateSession }, async (request: FastifyRequest, reply: FastifyReply) => getUserProfile(request, reply));
-  fastify.post('/logout', { preHandler: validateSession }, async (request: FastifyRequest, reply: FastifyReply) => logoutUser(request, reply));
+  fastify.post('/register', async (request, reply) => registerUser(request, reply));
+  fastify.post('/login', async (request, reply) => loginUser(request, reply));
+  fastify.get('/me', { preHandler: validateSession }, async (request, reply) => getUserProfile(request, reply));
+  fastify.post('/logout', { preHandler: validateSession }, async (request, reply) => logoutUser(request, reply));
 }

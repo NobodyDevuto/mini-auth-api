@@ -11,7 +11,7 @@ async function loadUsers(): Promise<Record<string, any>> {
   }
 }
 
-async function saveUsers(users: Record<string, any>) {
+export async function saveUsers(users: Record<string, any>) {
   await fs.writeFile(FILE_PATH, JSON.stringify(users, null, 2));
 }
 
